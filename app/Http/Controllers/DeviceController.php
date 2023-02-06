@@ -14,17 +14,30 @@ class DeviceController extends Controller
     function searchList($id=null, $name=null, $member_id=null){
 
         if(!$id && !$name && !$member_id){
-            return Device::all();
+          return Device::all();
         }else{
-            $results = Device::where([
-                'id' => $id,
-                'name' => $name,
-                'member_id' => $member_id
+          $results = Device::where([
+                'id'=>$id,
+                'name'=>$name,
+                'member_id'=>$member_id
             ])->get();
                 
             return $results;
         }
+    }
+   
+    function addDevice(Request $req){
+        $device = new Device;
+        $device -> name=$req->name;
+        $device -> member_id=$req->member_id;
+        $result = $device->save();
 
-        
+        if(!$result){
+            return ["Error"=>"Failed to save new device"];
+        }
+
+        return ["Result"=> Device::all()]
+
+       ;
     }
 }
