@@ -6,5 +6,7 @@ use Illuminate\Http\Request;
 
 class DummyController extends Controller
 {
-    //
+    function getData(){
+        return ["name"=>"neil"];
+    }
 }
