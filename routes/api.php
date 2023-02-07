@@ -24,3 +24,4 @@ Route::get('data', [DummyController::class, 'getData']);
 Route::get('list/{id?}/{name?}/{member_id?}',[DeviceController::class,'searchList']);
 
 Route::post('add', [DeviceController::class, 'addDevice']);
+Route::put('update', [DeviceController::class, 'updateDevice']);

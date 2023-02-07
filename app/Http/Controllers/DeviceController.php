@@ -16,17 +16,13 @@ class DeviceController extends Controller
         if(!$id && !$name && !$member_id){
           return Device::all();
         }else{
-          $results = Device::where([
-                'id'=>$id,
-                'name'=>$name,
-                'member_id'=>$member_id
-            ])->get();
-                
+            $results = Device::where(['id'=>$id, 'name'=>$name,'member_id'=>$member_id])->get();    
             return $results;
         }
     }
    
     function addDevice(Request $req){
+
         $device = new Device;
         $device -> name=$req->name;
         $device -> member_id=$req->member_id;
@@ -39,5 +35,18 @@ class DeviceController extends Controller
         return ["Result"=> Device::all()]
 
        ;
+    }
+
+    function updateDevice(Request $req){
+
+        $device= Device::find($req->id);
+        $device->name=$req->name;
+        $device->member_id=$req->member_id;
+        $result = $device->save();
+        
+        if(!$result){
+            return ["Error"=>"Failed to update device."];
+        }
+        return ["Result"=>"Device updated successfully"];
     }
 }
