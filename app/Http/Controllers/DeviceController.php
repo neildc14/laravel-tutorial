@@ -58,4 +58,20 @@ class DeviceController extends Controller
       }
       return [$result, count($result)];
     }
+
+    function delete($id){
+
+        $device= Device::find($id);
+
+        if(!$device){
+            return ["Error"=>"No device matched"];
+        }
+
+        $result= $device->delete();
+        if(!$result){
+            return ["Error"=>"Failed to delete device"];
+        }
+        
+        return ["Result"=>"Device deleted successfully"];
+    }
 }
