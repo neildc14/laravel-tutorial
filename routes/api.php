@@ -28,3 +28,5 @@ Route::put('update', [DeviceController::class, 'updateDevice']);
 
 Route::get("search/{name}", [DeviceController::class, 'search']);
 Route::delete("delete/{id}",[DeviceController::class, 'delete']);
+
+Route::get('save',[DeviceController::class, 'testData']);
