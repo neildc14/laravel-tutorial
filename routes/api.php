@@ -25,3 +25,5 @@ Route::get('list/{id?}/{name?}/{member_id?}',[DeviceController::class,'searchLis
 
 Route::post('add', [DeviceController::class, 'addDevice']);
 Route::put('update', [DeviceController::class, 'updateDevice']);
+
+Route::get("search/{name}", [DeviceController::class, 'search']);

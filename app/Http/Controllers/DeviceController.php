@@ -49,4 +49,13 @@ class DeviceController extends Controller
         }
         return ["Result"=>"Device updated successfully"];
     }
+
+    function search($name){
+
+      $result= Device::where("name","like","%".$name."%")->get();
+      if(count($result) == 0){
+        return ["No match found"];
+      }
+      return [$result, count($result)];
+    }
 }
