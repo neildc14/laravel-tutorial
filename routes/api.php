@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DummyController;
 use App\Http\Controllers\DeviceController;
+use App\Http\Controllers\MemberController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,3 +31,6 @@ Route::get("search/{name}", [DeviceController::class, 'search']);
 Route::delete("delete/{id}",[DeviceController::class, 'delete']);
 
 Route::get('save',[DeviceController::class, 'testData']);
+
+//resource
+Route::resource('member',MemberController::class);
