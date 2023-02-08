@@ -6,6 +6,7 @@ use App\Http\Controllers\DummyController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,3 +42,4 @@ Route::get("collection",[CollectionController::class,'collection_class']);
 Route::get("collection1",[CollectionController::class,'collection_method']);
 Route::get("collection2",[CollectionController::class,'filter_data']);
 Route::get("collection3",[CollectionController::class,'member_collection']);
+Route::post("auth", [LoginController::class,'login']);
