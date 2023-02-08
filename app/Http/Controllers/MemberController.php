@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Member;
+use App\Http\Resources\MemberResource;
 use Validator;
+
 
 class MemberController extends Controller
 {
@@ -15,7 +18,9 @@ class MemberController extends Controller
      */
     public function index()
     {
-        return Member::all();
+        return MemberResource::collection(Cache::remember("members", 60*60*24, function (){
+            return Member::all();
+        }));
     }
 
     /**
@@ -37,7 +42,7 @@ class MemberController extends Controller
     public function store(Request $request)
     {
         $rules= [
-            "name"=>"required", 
+            "name"=>"required",
             "email"=>"required|email|unique:members",
             "address"=>"required"];
         $validator= Validator::make($request->all(), $rules);
@@ -114,7 +119,7 @@ class MemberController extends Controller
         if ($request->has('address')) {
             $member->address = $request->address;
         }
-        
+
         $request= $member->save();
 
         if(!$request){
