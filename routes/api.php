@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DummyController;
 use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\MemberController;
+use App\Http\Controllers\CollectionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,3 +35,9 @@ Route::get('save',[DeviceController::class, 'testData']);
 
 //resource
 Route::resource('member',MemberController::class);
+
+//collection
+Route::get("collection",[CollectionController::class,'collection_class']);
+Route::get("collection1",[CollectionController::class,'collection_method']);
+Route::get("collection2",[CollectionController::class,'filter_data']);
+Route::get("collection3",[CollectionController::class,'member_collection']);
