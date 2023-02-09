@@ -7,6 +7,7 @@ use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\LoginController;
+use App\Mail\OrderShipped;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,3 +44,7 @@ Route::get("collection1",[CollectionController::class,'collection_method']);
 Route::get("collection2",[CollectionController::class,'filter_data']);
 Route::get("collection3",[CollectionController::class,'member_collection']);
 Route::post("auth", [LoginController::class,'login']);
+
+Route::get('/sendmail',function(){
+    Mail::to('test@test.com')->send(new OrderShipped());
+});
