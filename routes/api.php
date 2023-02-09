@@ -8,7 +8,7 @@ use App\Http\Controllers\MemberController;
 use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\LoginController;
 use App\Mail\OrderShipped;
-
+use App\Http\Controllers\InvoiceController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,3 +48,9 @@ Route::post("auth", [LoginController::class,'login']);
 Route::get('/sendmail',function(){
     Mail::to('test@test.com')->send(new OrderShipped());
 });
+
+//notification
+Route::get('invoice/{id}', [InvoiceController::class, 'show'])->name('show.invoice');
+ 
+Route::post('invoice-paid', [InvoiceController::class, 'sendInvoicePaidNotification'])
+    ->name('notify.invoice.paid');
