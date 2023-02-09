@@ -54,3 +54,8 @@ Route::get('invoice/{id}', [InvoiceController::class, 'show'])->name('show.invoi
  
 Route::post('invoice-paid', [InvoiceController::class, 'sendInvoicePaidNotification'])
     ->name('notify.invoice.paid');
+
+//rate limiters
+Route::middleware(['throttle:two_per_minute'])->group(function () {
+    Route::get("limiter/collection3",[CollectionController::class,'member_collection']);
+});
